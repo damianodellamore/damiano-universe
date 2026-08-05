@@ -1,0 +1,36 @@
+<main class="home">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__content">
+      <div class="hero__identity">
+        <figure class="hero__profile">
+          <span class="hero__portrait">
+            <img
+              [src]="profilePhoto"
+              alt="Ritratto di Damiano Dell'Amore"
+              width="112"
+              height="112"
+              loading="eager"
+              (error)="useProfileFallback($event)"
+            />
+          </span>
+          <figcaption>Damiano Dell'Amore</figcaption>
+        </figure>
+
+        <p class="hero__eyebrow">FULL STACK DEVELOPER · DIGITAL CREATOR</p>
+      </div>
+
+      <h1 id="hero-title" class="hero__title">
+        Costruisco esperienze
+        <span>tra codice e visione.</span>
+      </h1>
+
+      <p class="hero__description">
+        Esplora le tecnologie che orbitano attorno al mio lavoro.
+      </p>
+    </div>
+
+    <div class="hero__universe" aria-label="Tecnologie del portfolio di Damiano Dell'Amore">
+      <app-solar-system />
+    </div>
+  </section>
+</main>
