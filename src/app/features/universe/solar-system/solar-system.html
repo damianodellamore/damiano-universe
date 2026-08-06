@@ -1,0 +1,37 @@
+<div #solarSystem class="solar-system" aria-label="Sistema solare delle tecnologie">
+  <div class="solar-system__core">
+    <img [src]="damianoLogo" alt="Logo Damiano Dell'Amore" width="128" height="128" />
+  </div>
+
+  @for (orbit of orbits; track orbit.key) {
+    <div [class]="'orbit orbit--' + orbit.key" role="group" [attr.aria-label]="orbit.label">
+      @for (planet of planets; track planet.name) {
+        @if (planet.orbit === orbit.key) {
+          <div
+            class="planet"
+            [style.--planet-angle]="planet.angle + 'deg'"
+            [style.--planet-duration]="planet.duration"
+            [style.--planet-direction]="planet.direction"
+            [style.--planet-counter-direction]="planet.counterDirection"
+            [style.--planet-delay]="planet.delay"
+            [style.--planet-radius-offset]="planet.radiusOffset"
+            [style.--planet-float-duration]="planet.floatDuration"
+            [style.--planet-float-delay]="planet.floatDelay"
+            [style.--planet-float-distance]="planet.floatDistance"
+          >
+            <span class="planet__position">
+              <span class="planet__counter">
+                <button class="planet__button" type="button" [attr.aria-label]="planet.name">
+                  <span class="planet__icon">
+                    <img [src]="planet.logo" alt="" width="40" height="40" />
+                  </span>
+                  <span class="planet__label" aria-hidden="true">{{ planet.name }}</span>
+                </button>
+              </span>
+            </span>
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

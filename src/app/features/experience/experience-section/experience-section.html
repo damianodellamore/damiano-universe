@@ -1,0 +1,48 @@
+<section #experienceSection id="experience" class="experience" aria-labelledby="experience-title">
+  <div class="experience__shell">
+    <header class="experience__intro" data-reveal>
+      <p class="experience__eyebrow">EXPERIENCE</p>
+      <h2 id="experience-title" class="experience__title">
+        Costruire.
+        <span>Imparare.</span>
+        <span>Evolvere.</span>
+      </h2>
+      <p class="experience__description">
+        Ogni esperienza ha aggiunto struttura al mio modo di progettare, sviluppare e portare un
+        prodotto nel mondo reale.
+      </p>
+    </header>
+
+    <div #experienceTimeline class="experience-timeline" aria-label="Evoluzione professionale">
+      @for (experience of experiences; track experience.company; let index = $index) {
+        <article
+          class="timeline-entry"
+          [class.timeline-entry--featured]="experience.featured"
+          [class.timeline-entry--compact]="!experience.featured"
+          [attr.data-timeline-index]="index"
+          [style.--reveal-delay]="index * 70 + 'ms'"
+          data-reveal
+          tabindex="0"
+        >
+          <time class="timeline-entry__period">{{ experience.period }}</time>
+          <span class="timeline-entry__point" aria-hidden="true"></span>
+
+          <div class="timeline-entry__card">
+            <p class="timeline-entry__company">{{ experience.company }}</p>
+            <h3>{{ experience.role }}</h3>
+            <p class="timeline-entry__description">{{ experience.description }}</p>
+
+            <ul
+              class="timeline-entry__technologies"
+              [attr.aria-label]="'Tecnologie utilizzate in ' + experience.company"
+            >
+              @for (technology of experience.technologies; track technology) {
+                <li>{{ technology }}</li>
+              }
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

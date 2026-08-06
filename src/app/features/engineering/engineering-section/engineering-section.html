@@ -1,0 +1,123 @@
+<section
+  #engineeringSection
+  id="engineering"
+  class="engineering"
+  aria-labelledby="engineering-title"
+>
+  <div class="engineering__shell">
+    <header class="engineering__intro" data-reveal>
+      <p class="engineering__eyebrow">ENGINEERING</p>
+      <h2 id="engineering-title" class="engineering__title">
+        Dal concetto
+        <span>al prodotto reale.</span>
+      </h2>
+      <p class="engineering__description">
+        Dalla prima architettura alla release, progetto applicazioni e prodotti digitali mettendo
+        insieme esperienza utente, solidità tecnica e qualità del codice.
+      </p>
+    </header>
+
+    <div class="engineering__cards" aria-label="Aree di competenza">
+      @for (card of cards; track card.title; let index = $index) {
+        <div
+          class="engineering__card-reveal"
+          data-reveal
+          [style.--reveal-delay]="index * 90 + 'ms'"
+        >
+          <article class="engineering-card">
+            <span class="engineering-card__number" aria-hidden="true">{{ card.number }}</span>
+            <h3>{{ card.title }}</h3>
+
+            <div class="engineering-card__copy">
+              @for (paragraph of card.paragraphs; track paragraph) {
+                <p>{{ paragraph }}</p>
+              }
+            </div>
+
+            <ul class="engineering-card__badges" aria-label="Tecnologie e competenze">
+              @for (badge of card.badges; track badge) {
+                <li>{{ badge }}</li>
+              }
+            </ul>
+          </article>
+        </div>
+      }
+    </div>
+
+    <article id="treasureloop" class="featured-product" data-reveal>
+      <div class="featured-product__content">
+        <p class="engineering__eyebrow">FEATURED PRODUCT</p>
+        <h3>{{ featuredProduct.name }}</h3>
+        <p class="featured-product__claim">{{ featuredProduct.claim }}</p>
+
+        <div class="featured-product__description">
+          @for (paragraph of featuredProduct.description; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+        </div>
+
+        <ul class="featured-product__stack" aria-label="Stack di TreasureLoop">
+          @for (technology of featuredProduct.stack; track technology) {
+            <li>{{ technology }}</li>
+          }
+        </ul>
+
+        <div class="featured-product__actions">
+          <a
+            class="product-action product-action--primary"
+            [href]="featuredProduct.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Scopri TreasureLoop
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            class="product-action product-action--secondary"
+            [href]="featuredProduct.appStoreUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Scarica ora su App Store gratis
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="product-visual" aria-label="Identità e concetti chiave di TreasureLoop">
+        <div class="product-visual__bar" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <strong>TREASURELOOP / CULTURAL PLATFORM</strong>
+        </div>
+
+        <div class="product-visual__canvas">
+          <span class="product-visual__label">{{ featuredProduct.visual.label }}</span>
+
+          <div
+            class="product-visual__brand"
+            [class.product-visual__brand--has-logo]="productLogoLoaded"
+          >
+            <span aria-hidden="true">TL</span>
+            <img
+              [src]="featuredProduct.visual.logo"
+              alt="Logo TreasureLoop"
+              width="320"
+              height="320"
+              loading="lazy"
+              (load)="handleProductLogoLoad()"
+              (error)="handleProductLogoError($event)"
+            />
+          </div>
+
+          <p>{{ featuredProduct.visual.statement }}</p>
+
+          <ul>
+            @for (pillar of featuredProduct.visual.pillars; track pillar) {
+              <li>{{ pillar }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
