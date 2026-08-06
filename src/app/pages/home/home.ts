@@ -10,8 +10,8 @@ import { SolarSystem } from '../../features/universe/solar-system/solar-system';
   styleUrl: './home.scss',
 })
 export class Home {
-  protected readonly profilePhoto = '/logos/damianodellamore.JPG';
-  private readonly profileFallback = '/logos/damianodellamore_logo.svg';
+  protected readonly profilePhoto = 'logos/damianodellamore.JPG';
+  private readonly profileFallback = 'logos/damianodellamore_logo.svg';
 
   protected useProfileFallback(event: Event): void {
     const image = event.target;

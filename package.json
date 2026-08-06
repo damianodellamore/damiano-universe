@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:pages": "ng build --output-mode=static --base-href=/damiano-universe/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:damiano-universe": "node dist/damiano-universe/server/server.mjs"

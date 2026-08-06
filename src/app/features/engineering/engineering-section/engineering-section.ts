@@ -98,7 +98,7 @@ export class EngineeringSection implements AfterViewInit {
     url: 'https://www.treasureloop.it',
     appStoreUrl: 'https://apps.apple.com/it/app/treasureloop/id6736532288',
     visual: {
-      logo: '/logos/treasureloop_logo.png',
+      logo: 'logos/treasureloop_logo.png',
       label: 'CULTURAL PLATFORM',
       statement: 'Luoghi reali, storie digitali e cultura da vivere sul territorio.',
       pillars: ['Luoghi reali', 'Geolocalizzazione', 'Arte & storia', 'Media', 'Esplorazione'],

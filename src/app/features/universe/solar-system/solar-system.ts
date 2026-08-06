@@ -62,7 +62,7 @@ export class SolarSystem implements AfterViewInit {
   private appliedOrbitPlaybackRate = 1;
   private orbitAnimations: Animation[] = [];
 
-  protected readonly damianoLogo = '/logos/damianodellamore_logo.svg';
+  protected readonly damianoLogo = 'logos/damianodellamore_logo.svg';
 
   protected readonly orbits: Orbit[] = [
     {
@@ -82,7 +82,7 @@ export class SolarSystem implements AfterViewInit {
   protected readonly planets: Planet[] = [
     this.createPlanet(
       'Angular',
-      '/logos/angular_logo.svg',
+      'logos/angular_logo.svg',
       'inner',
       20,
       '19s',
@@ -95,7 +95,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'TypeScript',
-      '/logos/typescript_logo.svg',
+      'logos/typescript_logo.svg',
       'inner',
       113,
       '24s',
@@ -108,7 +108,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'HTML',
-      '/logos/html_logo.svg',
+      'logos/html_logo.svg',
       'inner',
       205,
       '21s',
@@ -121,7 +121,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'CSS',
-      '/logos/css_logo.svg',
+      'logos/css_logo.svg',
       'inner',
       292,
       '27s',
@@ -134,7 +134,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'React',
-      '/logos/react_logo.svg',
+      'logos/react_logo.svg',
       'middle',
       58,
       '31s',
@@ -147,7 +147,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'JavaScript',
-      '/logos/javascript_logo.svg',
+      'logos/javascript_logo.svg',
       'middle',
       149,
       '29s',
@@ -160,7 +160,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'Node.js',
-      '/logos/nodejs_logo.svg',
+      'logos/nodejs_logo.svg',
       'middle',
       244,
       '35s',
@@ -173,7 +173,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'PHP',
-      '/logos/php_logo.svg',
+      'logos/php_logo.svg',
       'middle',
       336,
       '33s',
@@ -186,7 +186,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'MySQL',
-      '/logos/mysql_logo.svg',
+      'logos/mysql_logo.svg',
       'outer',
       8,
       '43s',
@@ -199,7 +199,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'Git',
-      '/logos/git_logo.svg',
+      'logos/git_logo.svg',
       'outer',
       80,
       '39s',
@@ -212,7 +212,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'Linux',
-      '/logos/linux_logo.svg',
+      'logos/linux_logo.svg',
       'outer',
       156,
       '47s',
@@ -225,7 +225,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'Apple',
-      '/logos/apple_logo.svg',
+      'logos/apple_logo.svg',
       'outer',
       226,
       '41s',
@@ -238,7 +238,7 @@ export class SolarSystem implements AfterViewInit {
     ),
     this.createPlanet(
       'ChatGPT',
-      '/logos/chatgpt_logo.svg',
+      'logos/chatgpt_logo.svg',
       'outer',
       300,
       '52s',
