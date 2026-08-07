@@ -1,0 +1,138 @@
+:host {
+  display: block;
+}
+
+.site-footer {
+  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(2rem, 4vw, 3.25rem);
+  color: rgba(247, 241, 232, 0.58);
+}
+
+.site-footer__shell {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: min(100%, 76rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  margin: 0 auto;
+  border-top: 1px solid rgba(247, 241, 232, 0.12);
+  gap: 2rem;
+}
+
+.site-footer__identity p,
+.site-footer__identity span,
+.site-footer__meta p {
+  margin: 0;
+}
+
+.site-footer__identity p {
+  color: rgba(255, 249, 239, 0.88);
+  font-size: 0.84rem;
+  font-weight: 720;
+}
+
+.site-footer__identity span {
+  display: block;
+  margin-top: 0.42rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+}
+
+.site-footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem 1.25rem;
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+.site-footer__stack {
+  position: relative;
+}
+
+.site-footer__stack summary {
+  color: rgba(220, 232, 239, 0.68);
+  cursor: pointer;
+  list-style: none;
+  text-underline-offset: 0.25rem;
+  transition: color 240ms ease;
+}
+
+.site-footer__stack summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-footer__stack summary:is(:hover, :focus-visible) {
+  color: #fff9ef;
+  text-decoration: underline;
+}
+
+.site-footer__stack summary:focus-visible {
+  border-radius: 0.15rem;
+  outline: 2px solid rgba(255, 249, 239, 0.9);
+  outline-offset: 0.25rem;
+}
+
+.site-footer__stack span {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.65rem);
+  width: max-content;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(247, 241, 232, 0.1);
+  border-radius: 0.4rem;
+  color: rgba(247, 241, 232, 0.76);
+  background: #0a0d14;
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0.25rem, 0);
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
+}
+
+.site-footer__stack:is(:hover, :focus-within) span,
+.site-footer__stack[open] span {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 760px) {
+  .site-footer__shell {
+    align-items: flex-start;
+  }
+
+  .site-footer__meta {
+    max-width: 24rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer__shell,
+  .site-footer__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-footer__shell {
+    gap: 1.6rem;
+  }
+
+  .site-footer__meta {
+    gap: 0.45rem;
+  }
+
+  .site-footer__stack span {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__stack summary,
+  .site-footer__stack span {
+    transition: none;
+  }
+}

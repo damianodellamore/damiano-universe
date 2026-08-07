@@ -1,0 +1,57 @@
+<section #aboutSection id="about" class="about" aria-labelledby="about-title">
+  <div class="about__shell">
+    <div class="about__layout">
+      <header class="about__heading">
+        <div data-reveal>
+          <p class="about__eyebrow">ABOUT</p>
+          <h2 id="about-title" class="about__title">
+            Costruisco ciò che
+            <span>vorrei esistesse.</span>
+          </h2>
+        </div>
+
+        <div class="about-orbit" data-reveal style="--reveal-delay: 100ms" aria-hidden="true">
+          <span class="about-orbit__grid"></span>
+          <span class="about-orbit__path about-orbit__path--outer"></span>
+          <span class="about-orbit__path about-orbit__path--inner"></span>
+          <span class="about-orbit__axis"></span>
+          <span class="about-orbit__signal"></span>
+          <span class="about-orbit__coordinate">X 04.18 · Y 12.09</span>
+          <span class="about-orbit__signature">D / 01</span>
+        </div>
+      </header>
+
+      <div class="about__portrait">
+        <div class="about__copy">
+          <p class="about__lead" data-reveal style="--reveal-delay: 80ms">
+            Sono Damiano Dell’Amore, sviluppatore e creator.
+          </p>
+          <p data-reveal style="--reveal-delay: 150ms">
+            Mi interessa il punto in cui tecnologia, prodotto e creatività smettono di essere
+            discipline separate e diventano un unico modo di costruire.
+          </p>
+          <p data-reveal style="--reveal-delay: 220ms">
+            Sviluppo applicazioni, progetto esperienze digitali e trasformo idee in prodotti reali.
+          </p>
+        </div>
+
+        <p class="about__aside" data-reveal style="--reveal-delay: 290ms">
+          Il codice per me non è soltanto implementazione.
+          <span>È uno strumento per dare struttura a un’idea e portarla nel mondo.</span>
+        </p>
+
+        <ol class="about-principles">
+          @for (principle of principles; track principle.name; let index = $index) {
+            <li data-reveal [style.--reveal-delay]="index * 70 + 340 + 'ms'">
+              <span class="about-principles__index" aria-hidden="true">0{{ index + 1 }}</span>
+              <div>
+                <h3>{{ principle.name }}</h3>
+                <p>{{ principle.description }}</p>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

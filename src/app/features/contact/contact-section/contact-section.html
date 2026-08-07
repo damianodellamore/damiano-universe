@@ -1,0 +1,74 @@
+<section #contactSection id="contact" class="contact" aria-labelledby="contact-title">
+  <div class="contact__shell">
+    <header class="contact__intro">
+      <div class="contact__statement" data-reveal>
+        <p class="contact__eyebrow">CONTACT</p>
+        <h2 id="contact-title" class="contact__title">
+          Costruiamo
+          <span>qualcosa di reale.</span>
+        </h2>
+      </div>
+
+      <div class="contact__context">
+        <div class="contact-orbit" data-reveal style="--reveal-delay: 80ms" aria-hidden="true">
+          <span class="contact-orbit__path"></span>
+          <span class="contact-orbit__axis"></span>
+          <span class="contact-orbit__star"></span>
+          <span class="contact-orbit__coordinate">ORBIT / CONNECTION 01</span>
+        </div>
+
+        <div class="contact__copy">
+          <p data-reveal style="--reveal-delay: 140ms">
+            Sono sempre interessato a progetti, prodotti e idee che valga la pena trasformare in
+            qualcosa di concreto.
+          </p>
+          <p data-reveal style="--reveal-delay: 210ms">
+            Se vuoi parlare di sviluppo, tecnologia o di un progetto, scrivimi.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <a class="contact__cta" [href]="emailHref" data-reveal style="--reveal-delay: 280ms">
+      <span>SCRIVIMI</span>
+      <span class="contact__arrow" aria-hidden="true"></span>
+    </a>
+
+    <div class="contact-presence">
+      <h3 class="contact-presence__title" data-reveal>DIGITAL PRESENCE</h3>
+
+      <nav aria-label="Presenza digitale di Damiano Dell'Amore">
+        <ul class="contact-links">
+          @for (link of externalLinks; track link.id; let index = $index) {
+            <li data-reveal [style.--reveal-delay]="index * 60 + 'ms'">
+              <a
+                class="contact-link"
+                [attr.data-link]="link.id"
+                [href]="link.url"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @if (link.icon; as icon) {
+                  <span class="contact-link__icon" aria-hidden="true">
+                    <img [src]="icon" alt="" width="28" height="28" />
+                  </span>
+                }
+
+                <span class="contact-link__identity">
+                  <strong>{{ link.label }}</strong>
+                  @if (link.username; as username) {
+                    <span>{{ username }}</span>
+                  }
+                </span>
+
+                @if (link.category; as category) {
+                  <span class="contact-link__category">{{ category }}</span>
+                }
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>

@@ -20,18 +20,23 @@ describe('Home', () => {
     expect(component).toBeTruthy();
   });
 
-  it('places selected work and music after the experience section', () => {
+  it('places contact and footer after about at the end of the homepage', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
     const homepageSections = Array.from(
-      element.querySelectorAll('app-experience-section, app-projects-section, app-music-section'),
+      element.querySelectorAll(
+        'app-experience-section, app-projects-section, app-music-section, app-about-section, app-contact-section, app-footer',
+      ),
     ).map((section) => section.tagName.toLowerCase());
 
     expect(homepageSections).toEqual([
       'app-experience-section',
       'app-projects-section',
       'app-music-section',
+      'app-about-section',
+      'app-contact-section',
+      'app-footer',
     ]);
   });
 });

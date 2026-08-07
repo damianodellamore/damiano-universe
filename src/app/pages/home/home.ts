@@ -1,13 +1,25 @@
 import { Component } from '@angular/core';
+import { AboutSection } from '../../features/about/about-section/about-section';
+import { ContactSection } from '../../features/contact/contact-section/contact-section';
 import { EngineeringSection } from '../../features/engineering/engineering-section/engineering-section';
 import { ExperienceSection } from '../../features/experience/experience-section/experience-section';
 import { MusicSection } from '../../features/music/music-section/music-section';
 import { ProjectsSection } from '../../features/projects/projects-section/projects-section';
 import { SolarSystem } from '../../features/universe/solar-system/solar-system';
+import { Footer } from '../../layout/footer/footer';
 
 @Component({
   selector: 'app-home',
-  imports: [SolarSystem, EngineeringSection, ExperienceSection, ProjectsSection, MusicSection],
+  imports: [
+    SolarSystem,
+    EngineeringSection,
+    ExperienceSection,
+    ProjectsSection,
+    MusicSection,
+    AboutSection,
+    ContactSection,
+    Footer,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
