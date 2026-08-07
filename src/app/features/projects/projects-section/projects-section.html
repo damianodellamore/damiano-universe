@@ -1,0 +1,68 @@
+<section #projectsSection id="projects" class="projects" aria-labelledby="projects-title">
+  <div class="projects__shell">
+    <header class="projects__intro" data-reveal>
+      <p class="projects__eyebrow">SELECTED WORK</p>
+      <h2 id="projects-title" class="projects__title">
+        Esperimenti,
+        <span>prodotti,</span>
+        <span>idee diventate codice.</span>
+      </h2>
+      <p class="projects__description">
+        Una selezione di progetti attraverso cui ho esplorato frontend, backend, interazione e
+        product development.
+      </p>
+    </header>
+
+    <div class="projects__collection" aria-label="Progetti selezionati">
+      @for (project of projects; track project.id; let index = $index) {
+        <article
+          class="project-entry"
+          [class.project-entry--featured]="project.featured"
+          [attr.data-project-id]="project.id"
+          [style.--reveal-delay]="index * 90 + 'ms'"
+          data-reveal
+          tabindex="0"
+        >
+          @if (project.image; as image) {
+            <figure class="project-visual">
+              <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+            </figure>
+          } @else {
+            <div class="project-visual" aria-hidden="true">
+              <div class="project-visual__bar"><span></span><span></span><span></span></div>
+              <div class="project-visual__canvas">
+                <span class="project-visual__orbit project-visual__orbit--outer"></span>
+                <span class="project-visual__orbit project-visual__orbit--inner"></span>
+                <span class="project-visual__core"></span>
+              </div>
+            </div>
+          }
+
+          <div class="project-entry__content">
+            <div class="project-entry__meta">
+              <span>PROJECT {{ index + 1 < 10 ? '0' : '' }}{{ index + 1 }}</span>
+              <span>{{ project.category }}</span>
+            </div>
+
+            <h3>{{ project.title }}</h3>
+            <p class="project-entry__description">{{ project.description }}</p>
+
+            <ul
+              class="project-entry__technologies"
+              [attr.aria-label]="'Tecnologie di ' + project.title"
+            >
+              @for (technology of project.technologies; track technology) {
+                <li>{{ technology }}</li>
+              }
+            </ul>
+
+            <footer class="project-entry__status">
+              <span>YEAR / STATUS</span>
+              <strong>{{ project.year }} · {{ project.status }}</strong>
+            </footer>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

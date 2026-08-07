@@ -1,0 +1,149 @@
+<section #musicSection id="music" class="music" aria-labelledby="music-title">
+  <div class="music__shell">
+    <div class="music__hero">
+      <header class="music__intro" data-reveal>
+        <p class="music__eyebrow">MUSIC · DaMMaD</p>
+        <h2 id="music-title" class="music__title">
+          Il codice costruisce.
+          <span>La musica racconta.</span>
+        </h2>
+        <p class="music__description">
+          DaMMaD è la mia identità artistica. Produco e pubblico musica come un altro modo di
+          trasformare esperienza, energia e visione in qualcosa di reale.
+        </p>
+
+        <nav class="music-platforms" aria-label="Piattaforme musicali di DaMMaD">
+          @for (platform of musicPlatforms; track platform.id) {
+            @if (platform.url; as platformUrl) {
+              <a
+                class="music-platform"
+                [attr.data-platform]="platform.id"
+                [style.--platform-glow]="platform.glow"
+                [href]="platformUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="platform.ariaLabel"
+              >
+                <img [src]="platform.icon" alt="" width="24" height="24" aria-hidden="true" />
+                <span>{{ platform.name }}</span>
+              </a>
+            } @else {
+              <span
+                class="music-platform music-platform--pending"
+                [attr.data-platform]="platform.id"
+                [style.--platform-glow]="platform.glow"
+                [attr.aria-label]="platform.ariaLabel + ' — URL da verificare'"
+                aria-disabled="true"
+              >
+                <img [src]="platform.icon" alt="" width="24" height="24" aria-hidden="true" />
+                <span>{{ platform.name }}</span>
+              </span>
+            }
+          }
+        </nav>
+      </header>
+
+      <div
+        class="music-visual"
+        data-reveal
+        style="--reveal-delay: 90ms"
+        role="img"
+        aria-label="Composizione astratta di orbite e frequenze musicali"
+      >
+        <span class="music-visual__orbit music-visual__orbit--outer" aria-hidden="true"></span>
+        <span class="music-visual__orbit music-visual__orbit--inner" aria-hidden="true"></span>
+        <span class="music-visual__core" aria-hidden="true">DaMMaD</span>
+
+        <div class="music-waveform" aria-hidden="true">
+          @for (height of waveformBars; track $index; let index = $index) {
+            <span
+              [style.--wave-height]="height + '%'"
+              [style.--wave-delay]="index * 90 + 'ms'"
+            ></span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <section class="music-releases" aria-labelledby="music-releases-title">
+      <header class="music-releases__intro" data-reveal>
+        <p class="music__eyebrow">FEATURED TRACKS</p>
+        <h3 id="music-releases-title">Release selezionate.</h3>
+      </header>
+
+      <div class="music-releases__layout">
+        @for (release of featuredReleases; track release.id) {
+          <article class="featured-release" data-reveal tabindex="0">
+            @if (release.cover; as cover) {
+              <figure class="featured-release__cover">
+                <img
+                  [src]="cover.src"
+                  [alt]="cover.alt"
+                  [width]="cover.width"
+                  [height]="cover.height"
+                  loading="lazy"
+                />
+              </figure>
+            }
+
+            <div class="featured-release__content">
+              <p class="release-meta">{{ release.type }} · {{ release.year }}</p>
+              <h4>{{ release.title }}</h4>
+              <p class="release-artist">{{ release.artist }}</p>
+
+              @if (release.description) {
+                <p class="release-description">{{ release.description }}</p>
+              }
+
+              @if (release.album) {
+                <p class="release-album">Da {{ release.album }}</p>
+              }
+
+              @if (release.spotifyUrl) {
+                <a
+                  class="release-link"
+                  [href]="release.spotifyUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apri il brano su Spotify
+                </a>
+              }
+            </div>
+
+            @if (release.spotifyEmbedUrl) {
+              <div class="spotify-embed">
+                <iframe
+                  [src]="trustedSpotifyEmbedUrls[release.id]"
+                  width="100%"
+                  height="352"
+                  frameborder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                  [title]="'Ascolta ' + release.title + ' di ' + release.artist + ' su Spotify'"
+                ></iframe>
+              </div>
+            }
+          </article>
+        }
+
+        @for (releaseGroup of supportingReleaseGroups; track $index; let groupIndex = $index) {
+          <div
+            class="release-group"
+            data-reveal
+            [style.--reveal-delay]="(groupIndex + 1) * 90 + 'ms'"
+          >
+            @for (release of releaseGroup; track release.id) {
+              <article class="compact-release" tabindex="0">
+                <p class="release-meta">{{ release.type }} · {{ release.year }}</p>
+                <h4>{{ release.title }}</h4>
+                <p class="release-artist">{{ release.artist }}</p>
+              </article>
+            }
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</section>

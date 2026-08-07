@@ -19,4 +19,19 @@ describe('Home', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('places selected work and music after the experience section', () => {
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const homepageSections = Array.from(
+      element.querySelectorAll('app-experience-section, app-projects-section, app-music-section'),
+    ).map((section) => section.tagName.toLowerCase());
+
+    expect(homepageSections).toEqual([
+      'app-experience-section',
+      'app-projects-section',
+      'app-music-section',
+    ]);
+  });
 });

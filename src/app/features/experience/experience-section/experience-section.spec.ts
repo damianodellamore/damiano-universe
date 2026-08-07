@@ -19,4 +19,20 @@ describe('ExperienceSection', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('presents SevenData as a future experience without unconfirmed technologies', () => {
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const sevenDataEntry = Array.from(
+      element.querySelectorAll<HTMLElement>('.timeline-entry'),
+    ).find((entry) => entry.textContent?.includes('SEVENDATA'));
+
+    expect(sevenDataEntry).toBeTruthy();
+    expect(sevenDataEntry?.textContent).toContain('Da settembre 2026');
+    expect(sevenDataEntry?.textContent).toContain(
+      'Ingresso previsto nel team di sviluppo frontend di SevenData.',
+    );
+    expect(sevenDataEntry?.querySelector('.timeline-entry__technologies')).toBeNull();
+  });
 });

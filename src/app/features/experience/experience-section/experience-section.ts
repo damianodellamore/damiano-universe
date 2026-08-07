@@ -8,6 +8,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { setupScrollReveal } from '../../../shared/scroll-reveal';
 
 interface ProfessionalExperience {
   company: string;
@@ -39,11 +40,10 @@ export class ExperienceSection implements AfterViewInit {
   protected readonly experiences: ProfessionalExperience[] = [
     {
       company: 'SEVENDATA',
-      period: '2026 — presente',
+      period: 'Da settembre 2026',
       role: 'Frontend Developer',
-      description:
-        "Sviluppo di interfacce e prodotti digitali in un contesto orientato ai dati, all'intelligenza artificiale e alle applicazioni business.",
-      technologies: ['Angular', 'TypeScript', 'JavaScript', 'API', 'Data Intelligence'],
+      description: 'Ingresso previsto nel team di sviluppo frontend di SevenData.',
+      technologies: [],
       featured: true,
     },
     {
@@ -78,56 +78,29 @@ export class ExperienceSection implements AfterViewInit {
   ngAfterViewInit(): void {
     const section = this.experienceSection.nativeElement;
     const timeline = this.experienceTimeline.nativeElement;
-    const browserWindow = section.ownerDocument.defaultView;
+    let highestVisibleIndex = -1;
 
-    if (!browserWindow || !('IntersectionObserver' in browserWindow)) {
-      timeline.style.setProperty('--timeline-progress', '1');
-      return;
-    }
+    setupScrollReveal({
+      container: section,
+      readyClass: 'experience--reveal-ready',
+      destroyRef: this.destroyRef,
+      ngZone: this.ngZone,
+      threshold: 0.16,
+      rootMargin: '0px 0px -9% 0px',
+      onUnavailable: () => timeline.style.setProperty('--timeline-progress', '1'),
+      onReveal: (element) => {
+        const timelineIndex = Number(element.dataset['timelineIndex']);
 
-    if (browserWindow.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      timeline.style.setProperty('--timeline-progress', '1');
-      return;
-    }
+        if (!Number.isInteger(timelineIndex)) {
+          return;
+        }
 
-    this.ngZone.runOutsideAngular(() => {
-      section.classList.add('experience--reveal-ready');
-      let highestVisibleIndex = -1;
-
-      const observer = new browserWindow.IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) {
-              continue;
-            }
-
-            const element = entry.target as HTMLElement;
-            const timelineIndex = Number(element.dataset['timelineIndex']);
-
-            element.classList.add('is-visible');
-
-            if (Number.isInteger(timelineIndex)) {
-              highestVisibleIndex = Math.max(highestVisibleIndex, timelineIndex);
-              timeline.style.setProperty(
-                '--timeline-progress',
-                `${(highestVisibleIndex + 1) / this.experiences.length}`,
-              );
-            }
-
-            observer.unobserve(element);
-          }
-        },
-        {
-          threshold: 0.16,
-          rootMargin: '0px 0px -9% 0px',
-        },
-      );
-
-      section.querySelectorAll<HTMLElement>('[data-reveal]').forEach((element) => {
-        observer.observe(element);
-      });
-
-      this.destroyRef.onDestroy(() => observer.disconnect());
+        highestVisibleIndex = Math.max(highestVisibleIndex, timelineIndex);
+        timeline.style.setProperty(
+          '--timeline-progress',
+          `${(highestVisibleIndex + 1) / this.experiences.length}`,
+        );
+      },
     });
   }
 }

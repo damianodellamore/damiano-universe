@@ -8,6 +8,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { setupScrollReveal } from '../../../shared/scroll-reveal';
 
 interface EngineeringCard {
   number: string;
@@ -119,41 +120,12 @@ export class EngineeringSection implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const section = this.engineeringSection.nativeElement;
-    const browserWindow = section.ownerDocument.defaultView;
 
-    if (
-      !browserWindow ||
-      !('IntersectionObserver' in browserWindow) ||
-      browserWindow.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return;
-    }
-
-    this.ngZone.runOutsideAngular(() => {
-      section.classList.add('engineering--reveal-ready');
-
-      const observer = new browserWindow.IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) {
-              continue;
-            }
-
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        },
-        {
-          threshold: 0.14,
-          rootMargin: '0px 0px -8% 0px',
-        },
-      );
-
-      section.querySelectorAll<HTMLElement>('[data-reveal]').forEach((element) => {
-        observer.observe(element);
-      });
-
-      this.destroyRef.onDestroy(() => observer.disconnect());
+    setupScrollReveal({
+      container: section,
+      readyClass: 'engineering--reveal-ready',
+      destroyRef: this.destroyRef,
+      ngZone: this.ngZone,
     });
   }
 }

@@ -8,8 +8,8 @@
         <span>Evolvere.</span>
       </h2>
       <p class="experience__description">
-        Ogni esperienza ha aggiunto struttura al mio modo di progettare, sviluppare e portare un
-        prodotto nel mondo reale.
+        Il mio percorso raccoglie le esperienze che mi hanno formato e la prossima tappa della mia
+        evoluzione professionale.
       </p>
     </header>
 
@@ -32,14 +32,16 @@
             <h3>{{ experience.role }}</h3>
             <p class="timeline-entry__description">{{ experience.description }}</p>
 
-            <ul
-              class="timeline-entry__technologies"
-              [attr.aria-label]="'Tecnologie utilizzate in ' + experience.company"
-            >
-              @for (technology of experience.technologies; track technology) {
-                <li>{{ technology }}</li>
-              }
-            </ul>
+            @if (experience.technologies.length > 0) {
+              <ul
+                class="timeline-entry__technologies"
+                [attr.aria-label]="'Tecnologie utilizzate in ' + experience.company"
+              >
+                @for (technology of experience.technologies; track technology) {
+                  <li>{{ technology }}</li>
+                }
+              </ul>
+            }
           </div>
         </article>
       }
