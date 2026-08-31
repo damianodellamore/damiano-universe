@@ -39,10 +39,11 @@ export class ExperienceSection implements AfterViewInit {
 
   protected readonly experiences: ProfessionalExperience[] = [
     {
-      company: 'SEVENDATA',
+      company: 'AZIENDA DATA-DRIVEN',
       period: 'Da settembre 2026',
       role: 'Frontend Developer',
-      description: 'Ingresso previsto nel team di sviluppo frontend di SevenData.',
+      description:
+        'Azienda di Milano che lavora con i dati per migliorare il business dei propri clienti.',
       technologies: [],
       featured: true,
     },

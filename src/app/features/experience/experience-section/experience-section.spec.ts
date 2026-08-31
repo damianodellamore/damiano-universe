@@ -20,19 +20,19 @@ describe('ExperienceSection', () => {
     expect(component).toBeTruthy();
   });
 
-  it('presents SevenData as a future experience without unconfirmed technologies', () => {
+  it('presents the future company anonymously and without unconfirmed technologies', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
-    const sevenDataEntry = Array.from(
+    const futureCompanyEntry = Array.from(
       element.querySelectorAll<HTMLElement>('.timeline-entry'),
-    ).find((entry) => entry.textContent?.includes('SEVENDATA'));
+    ).find((entry) => entry.textContent?.includes('AZIENDA DATA-DRIVEN'));
 
-    expect(sevenDataEntry).toBeTruthy();
-    expect(sevenDataEntry?.textContent).toContain('Da settembre 2026');
-    expect(sevenDataEntry?.textContent).toContain(
-      'Ingresso previsto nel team di sviluppo frontend di SevenData.',
+    expect(futureCompanyEntry).toBeTruthy();
+    expect(futureCompanyEntry?.textContent).toContain('Da settembre 2026');
+    expect(futureCompanyEntry?.textContent).toContain(
+      'Azienda di Milano che lavora con i dati per migliorare il business dei propri clienti.',
     );
-    expect(sevenDataEntry?.querySelector('.timeline-entry__technologies')).toBeNull();
+    expect(futureCompanyEntry?.querySelector('.timeline-entry__technologies')).toBeNull();
   });
 });
