@@ -8,7 +8,6 @@
   isolation: isolate;
 }
 
-.home::before,
 .home::after {
   position: fixed;
   inset: 0;
@@ -16,25 +15,6 @@
   pointer-events: none;
   content: '';
   will-change: opacity, transform;
-}
-
-.home::before {
-  background-image:
-    radial-gradient(circle at 16% 24%, rgba(255, 255, 255, 0.78) 0 1px, transparent 1.45px),
-    radial-gradient(circle at 74% 16%, rgba(219, 233, 242, 0.48) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 86% 68%, rgba(255, 249, 239, 0.52) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 38% 82%, rgba(255, 255, 255, 0.34) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 8% 72%, rgba(200, 163, 93, 0.54) 0 0.8px, transparent 1.35px),
-    radial-gradient(circle at 54% 42%, rgba(255, 255, 255, 0.26) 0 0.8px, transparent 1.4px);
-  background-size:
-    16rem 16rem,
-    22rem 22rem,
-    19rem 19rem,
-    26rem 26rem,
-    31rem 31rem,
-    14rem 14rem;
-  opacity: 0.48;
-  animation: stars-twinkle 9s ease-in-out infinite alternate;
 }
 
 .home::after {
@@ -45,6 +25,83 @@
     linear-gradient(180deg, rgba(5, 7, 13, 0.1), rgba(5, 7, 13, 0.36));
   opacity: 0.72;
   animation: nebula-drift 18s ease-in-out infinite alternate;
+}
+
+.ambient-sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.ambient-sky__star {
+  position: absolute;
+  top: var(--star-y);
+  left: var(--star-x);
+  width: var(--star-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: rgba(255, 249, 239, 0.92);
+  background: currentColor;
+  box-shadow:
+    0 0 0.35rem currentColor,
+    0 0 1rem currentColor;
+  opacity: 0.16;
+  transform: scale(0.62) rotate(-6deg);
+  animation: ambient-star-twinkle var(--star-duration) ease-in-out var(--star-delay) infinite;
+  will-change: opacity, transform;
+}
+
+.ambient-sky__star::before,
+.ambient-sky__star::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--star-flare);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  content: '';
+  transform: translate(-50%, -50%);
+}
+
+.ambient-sky__star::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.ambient-sky__star[data-tone='gold'] {
+  color: rgba(224, 185, 109, 0.9);
+}
+
+.ambient-sky__star[data-tone='ice'] {
+  color: rgba(148, 205, 235, 0.88);
+}
+
+.ambient-sky__meteor {
+  position: absolute;
+  top: 11%;
+  right: -10rem;
+  width: 8rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 232, 239, 0.82));
+  filter: drop-shadow(0 0 0.45rem rgba(148, 205, 235, 0.72));
+  opacity: 0;
+  transform: rotate(-28deg);
+  animation: ambient-meteor 18s linear 5s infinite;
+  will-change: opacity, transform;
+}
+
+.ambient-sky__meteor::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0.22rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff9ef;
+  box-shadow: 0 0 0.75rem rgba(255, 249, 239, 0.92);
+  content: '';
+  transform: translate(50%, -50%);
 }
 
 .hero {
@@ -209,14 +266,44 @@
   min-width: 0;
 }
 
-@keyframes stars-twinkle {
-  50% {
-    opacity: 0.34;
+@keyframes ambient-star-twinkle {
+  0%,
+  100% {
+    opacity: 0.14;
+    transform: scale(0.62) rotate(-6deg);
   }
 
-  to {
-    opacity: 0.58;
-    transform: translate3d(0.18rem, -0.12rem, 0);
+  36% {
+    opacity: 1;
+    transform: scale(1.16) rotate(0deg);
+  }
+
+  48% {
+    opacity: 0.38;
+    transform: scale(0.78) rotate(3deg);
+  }
+
+  76% {
+    opacity: 0.92;
+    transform: scale(1.04) rotate(7deg);
+  }
+}
+
+@keyframes ambient-meteor {
+  0%,
+  68%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-28deg);
+  }
+
+  70% {
+    opacity: 0.88;
+  }
+
+  77% {
+    opacity: 0;
+    transform: translate3d(-105vw, 48vh, 0) rotate(-28deg);
   }
 }
 
@@ -302,13 +389,23 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home::before,
   .home::after,
+  .ambient-sky__star,
+  .ambient-sky__meteor,
   .hero__profile,
   .hero__profile::before,
   .hero__action {
     animation: none;
     transition: none;
+  }
+
+  .ambient-sky__star {
+    opacity: 0.62;
+    transform: none;
+  }
+
+  .ambient-sky__meteor {
+    display: none;
   }
 
   .hero__action:is(:hover, :focus-visible) {

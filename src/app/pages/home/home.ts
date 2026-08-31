@@ -25,6 +25,15 @@ import { Footer } from '../../layout/footer/footer';
 })
 export class Home {
   protected readonly profilePhoto = 'logos/damianodellamore.JPG';
+  protected readonly ambientStars = Array.from({ length: 18 }, (_, index) => ({
+    x: 4 + ((index * 47 + 11) % 92),
+    y: 4 + ((index * 67 + 7) % 90),
+    size: 2.4 + (index % 4) * 0.8,
+    flare: 0.85 + (index % 3) * 0.32,
+    duration: 4.8 + (index % 6) * 0.9,
+    delay: -((index % 13) * 0.68),
+    tone: index % 6 === 0 ? 'gold' : index % 4 === 0 ? 'ice' : 'white',
+  }));
   private readonly profileFallback = 'logos/damianodellamore_logo.svg';
 
   protected useProfileFallback(event: Event): void {

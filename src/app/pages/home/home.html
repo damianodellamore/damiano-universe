@@ -1,4 +1,20 @@
 <main class="home">
+  <div class="ambient-sky" aria-hidden="true">
+    @for (star of ambientStars; track $index) {
+      <span
+        class="ambient-sky__star"
+        [attr.data-tone]="star.tone"
+        [style.--star-x]="star.x + '%'"
+        [style.--star-y]="star.y + '%'"
+        [style.--star-size]="star.size + 'px'"
+        [style.--star-flare]="star.flare + 'rem'"
+        [style.--star-duration]="star.duration + 's'"
+        [style.--star-delay]="star.delay + 's'"
+      ></span>
+    }
+    <span class="ambient-sky__meteor"></span>
+  </div>
+
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__content">
       <div class="hero__identity">

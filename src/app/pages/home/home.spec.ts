@@ -39,4 +39,18 @@ describe('Home', () => {
       'app-footer',
     ]);
   });
+
+  it('renders the decorative ambient starfield without exposing it to assistive technology', () => {
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const sky = element.querySelector('.ambient-sky');
+    const stars = element.querySelectorAll('.ambient-sky__star');
+    const meteor = element.querySelector('.ambient-sky__meteor');
+
+    expect(sky?.getAttribute('aria-hidden')).toBe('true');
+    expect(stars).toHaveLength(18);
+    expect(stars.item(0).getAttribute('style')).toContain('--star-flare');
+    expect(meteor).not.toBeNull();
+  });
 });
