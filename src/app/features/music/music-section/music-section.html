@@ -144,6 +144,61 @@
           </div>
         }
       </div>
+
+      <section class="music-video" data-reveal aria-labelledby="music-video-title">
+        <div class="music-video__intro">
+          <p class="music__eyebrow">MOST WATCHED · YOUTUBE</p>
+          <h3 id="music-video-title">
+            In tlà mì Rumagna,
+            <span>la più vista.</span>
+          </h3>
+          <p class="music-video__description">
+            Il brano che ha portato il dialetto romagnolo online durante il 2020. Guardalo qui,
+            oppure entra nel canale ufficiale per scoprire tutti i video di DaMMaD.
+          </p>
+
+          <div class="music-video__actions">
+            <a
+              class="music-video__channel"
+              [href]="youtubeUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="icons/music/youtube.svg" alt="" width="22" height="22" aria-hidden="true" />
+              Visita il canale YouTube
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="music-video__direct-link"
+              [href]="featuredVideo.watchUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Apri il video
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="music-video__player">
+          <iframe
+            [src]="featuredVideo.embedUrl"
+            [title]="featuredVideo.title"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
     </section>
   </div>
 </section>

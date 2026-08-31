@@ -63,6 +63,24 @@ describe('MusicSection', () => {
     expect(embeds).toHaveLength(0);
   });
 
+  it('embeds the most watched official YouTube video and links the artist channel', () => {
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    const player = element.querySelector<HTMLIFrameElement>('.music-video__player iframe');
+    const channelLink = element.querySelector<HTMLAnchorElement>('.music-video__channel');
+    const directVideoLink = element.querySelector<HTMLAnchorElement>('.music-video__direct-link');
+
+    expect(player).not.toBeNull();
+    expect(player?.getAttribute('src')).toBe(
+      'https://www.youtube-nocookie.com/embed/qWFq4zrPcdg?rel=0',
+    );
+    expect(player?.title).toBe('DaMMaD - In tlà mì Rumagna');
+    expect(player?.getAttribute('loading')).toBe('lazy');
+    expect(channelLink?.href).toBe('https://www.youtube.com/@damianodellamore');
+    expect(directVideoLink?.href).toBe('https://www.youtube.com/watch?v=qWFq4zrPcdg');
+  });
+
   it('creates external links only for configured platform URLs', () => {
     fixture.detectChanges();
 

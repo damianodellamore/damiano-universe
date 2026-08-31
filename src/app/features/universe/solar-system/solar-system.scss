@@ -13,7 +13,7 @@
   --glow-x: 0%;
   --glow-y: 0%;
   position: relative;
-  width: min(92vw, 42rem);
+  width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
   filter: drop-shadow(0 2rem 4rem rgba(0, 0, 0, 0.44));
@@ -395,7 +395,6 @@
   .solar-system {
     --core-size: clamp(5.5rem, 26vw, 7rem);
     --planet-size: clamp(2.5rem, 10.5vw, 3.2rem);
-    width: min(94vw, 25rem);
   }
 
   .planet__label {

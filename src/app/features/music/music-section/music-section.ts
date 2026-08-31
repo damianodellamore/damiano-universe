@@ -64,6 +64,14 @@ export class MusicSection implements AfterViewInit {
 
   protected readonly youtubeUrl = 'https://www.youtube.com/@damianodellamore';
 
+  protected readonly featuredVideo = {
+    title: 'DaMMaD - In tlà mì Rumagna',
+    watchUrl: 'https://www.youtube.com/watch?v=qWFq4zrPcdg',
+    embedUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://www.youtube-nocookie.com/embed/qWFq4zrPcdg?rel=0',
+    ),
+  };
+
   protected readonly musicPlatforms: MusicPlatform[] = [
     {
       id: 'spotify',
