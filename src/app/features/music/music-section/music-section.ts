@@ -38,6 +38,7 @@ interface MusicRelease {
   cover?: MusicReleaseCover;
   spotifyUrl?: string;
   spotifyEmbedUrl?: string;
+  latest?: boolean;
   featured: boolean;
 }
 
@@ -101,6 +102,17 @@ export class MusicSection implements AfterViewInit {
 
   protected readonly musicReleases: MusicRelease[] = [
     {
+      id: 'mi-ipnotizzi',
+      title: 'Mi Ipnotizzi',
+      artist: 'DaMMaD',
+      year: 2026,
+      type: 'Singolo',
+      spotifyUrl: 'https://open.spotify.com/album/1uZhPKu1Iv7gxqjGth49Bs',
+      spotifyEmbedUrl: 'https://open.spotify.com/embed/album/1uZhPKu1Iv7gxqjGth49Bs',
+      latest: true,
+      featured: false,
+    },
+    {
       id: 'in-tla-mi-rumagna',
       title: 'In tlà mì Rumagna',
       artist: 'DaMMaD',
@@ -150,9 +162,10 @@ export class MusicSection implements AfterViewInit {
     },
   ];
 
+  protected readonly latestReleases = this.musicReleases.filter((release) => release.latest);
   protected readonly featuredReleases = this.musicReleases.filter((release) => release.featured);
   protected readonly supportingReleaseGroups = this.groupReleases(
-    this.musicReleases.filter((release) => !release.featured),
+    this.musicReleases.filter((release) => !release.featured && !release.latest),
     2,
   );
   protected readonly trustedSpotifyEmbedUrls = this.createTrustedSpotifyEmbedUrls(
@@ -179,10 +192,11 @@ export class MusicSection implements AfterViewInit {
 
   private createTrustedSpotifyEmbedUrls(releases: MusicRelease[]): Record<string, SafeResourceUrl> {
     const trustedUrls: Record<string, SafeResourceUrl> = {};
-    const spotifyEmbedPrefix = 'https://open.spotify.com/embed/track/';
+    const spotifyEmbedPattern =
+      /^https:\/\/open\.spotify\.com\/embed\/(?:track|album)\/[a-zA-Z0-9]{22}(?:\?[^#]*)?$/;
 
     for (const release of releases) {
-      if (!release.spotifyEmbedUrl?.startsWith(spotifyEmbedPrefix)) {
+      if (!release.spotifyEmbedUrl || !spotifyEmbedPattern.test(release.spotifyEmbedUrl)) {
         continue;
       }
 

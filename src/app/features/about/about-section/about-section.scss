@@ -15,7 +15,7 @@
   left: 50%;
   width: min(32rem, 70vw);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(224, 185, 109, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--gold) / 0.5), transparent);
   content: '';
   transform: translateX(-50%);
 }
@@ -28,7 +28,7 @@
   width: 40rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(71, 126, 170, 0.1), transparent 68%);
+  background: radial-gradient(circle, rgb(var(--blue) / 0.1), transparent 68%);
   content: '';
   pointer-events: none;
 }
@@ -52,7 +52,7 @@
 
 .about__eyebrow {
   margin: 0 0 1rem;
-  color: #e0b96d;
+  color: rgb(var(--gold));
   font-size: 0.78rem;
   font-weight: 750;
   letter-spacing: 0.2em;
@@ -62,7 +62,7 @@
 .about__title {
   max-width: 10ch;
   margin: 0;
-  color: #fff9ef;
+  color: rgb(var(--heading));
   font-size: clamp(3.2rem, 6.2vw, 6.2rem);
   font-weight: 760;
   letter-spacing: -0.052em;
@@ -73,7 +73,7 @@
 
 .about__title span {
   display: block;
-  color: #dce8ef;
+  color: rgb(var(--cool));
 }
 
 .about__portrait {
@@ -86,7 +86,7 @@
 
 .about__copy p {
   margin: 0;
-  color: rgba(247, 241, 232, 0.7);
+  color: var(--text-body);
   font-size: clamp(1.02rem, 1.45vw, 1.16rem);
   line-height: 1.78;
   text-wrap: pretty;
@@ -98,7 +98,7 @@
 
 .about__copy .about__lead {
   margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
-  color: #fff9ef;
+  color: rgb(var(--heading));
   font-size: clamp(1.35rem, 2.2vw, 1.8rem);
   font-weight: 620;
   letter-spacing: -0.025em;
@@ -109,8 +109,8 @@
   max-width: 35rem;
   padding-left: 1.25rem;
   margin: clamp(2.5rem, 5vw, 4rem) 0 0;
-  border-left: 1px solid rgba(224, 185, 109, 0.48);
-  color: rgba(220, 232, 239, 0.66);
+  border-left: 1px solid rgb(var(--gold) / 0.48);
+  color: var(--cool-muted);
   font-size: 0.92rem;
   line-height: 1.7;
 }
@@ -129,18 +129,18 @@
   display: grid;
   grid-template-columns: 3.25rem minmax(0, 1fr);
   padding: 1.35rem 0;
-  border-top: 1px solid rgba(247, 241, 232, 0.12);
+  border-top: 1px solid rgb(var(--text) / 0.12);
   gap: 1rem;
   transition: border-color 280ms ease;
 }
 
 .about-principles li:last-child {
-  border-bottom: 1px solid rgba(247, 241, 232, 0.12);
+  border-bottom: 1px solid rgb(var(--text) / 0.12);
 }
 
 .about-principles__index {
   padding-top: 0.18rem;
-  color: rgba(224, 185, 109, 0.56);
+  color: var(--accent-text);
   font-size: 0.65rem;
   font-weight: 720;
   letter-spacing: 0.14em;
@@ -148,7 +148,7 @@
 
 .about-principles h3 {
   margin: 0;
-  color: #fff9ef;
+  color: rgb(var(--heading));
   font-size: 0.78rem;
   font-weight: 760;
   letter-spacing: 0.2em;
@@ -159,14 +159,14 @@
 .about-principles p {
   max-width: 33rem;
   margin: 0.55rem 0 0;
-  color: rgba(247, 241, 232, 0.58);
+  color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.62;
   text-wrap: pretty;
 }
 
 .about-principles li:hover {
-  border-color: rgba(224, 185, 109, 0.32);
+  border-color: rgb(var(--gold) / 0.32);
 }
 
 .about-principles li:hover h3 {
@@ -179,24 +179,24 @@
   min-height: 16rem;
   margin-top: clamp(4rem, 8vw, 7rem);
   overflow: hidden;
-  color: rgba(220, 232, 239, 0.4);
+  color: var(--cool-faint);
 }
 
 .about-orbit__grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(220, 232, 239, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(220, 232, 239, 0.045) 1px, transparent 1px);
+    linear-gradient(rgb(var(--cool) / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--cool) / 0.045) 1px, transparent 1px);
   background-size: 2rem 2rem;
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent 92%);
+  mask-image: linear-gradient(90deg, rgb(var(--shadow) / 0.7), transparent 92%);
 }
 
 .about-orbit__path {
   position: absolute;
   top: 50%;
   left: 46%;
-  border: 1px solid rgba(113, 153, 181, 0.24);
+  border: 1px solid rgb(var(--slate) / 0.24);
   border-radius: 50%;
   transform: translate(-50%, -50%) rotate(-12deg);
 }
@@ -210,7 +210,7 @@
 .about-orbit__path--inner {
   width: 56%;
   aspect-ratio: 1.35;
-  border-color: rgba(224, 185, 109, 0.2);
+  border-color: rgb(var(--gold) / 0.2);
   transform: translate(-50%, -50%) rotate(21deg);
 }
 
@@ -220,7 +220,7 @@
   left: 12%;
   width: 72%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(220, 232, 239, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--cool) / 0.2), transparent);
   transform: rotate(-12deg);
 }
 
@@ -231,10 +231,10 @@
   width: 0.45rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #e0b96d;
+  background: rgb(var(--gold));
   box-shadow:
-    0 0 0 0.35rem rgba(224, 185, 109, 0.08),
-    0 0 1.8rem rgba(224, 185, 109, 0.6);
+    0 0 0 0.35rem rgb(var(--gold) / 0.08),
+    0 0 1.8rem rgb(var(--gold) / 0.6);
   animation: about-signal 4.5s ease-in-out infinite alternate;
 }
 
@@ -253,7 +253,7 @@
 
 .about-orbit__signature {
   right: 0;
-  color: rgba(224, 185, 109, 0.48);
+  color: var(--accent-text);
 }
 
 .about--reveal-ready [data-reveal] {

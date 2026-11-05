@@ -71,6 +71,56 @@
         <h3 id="music-releases-title">Release selezionate.</h3>
       </header>
 
+      @for (release of latestReleases; track release.id) {
+        <article
+          class="latest-release"
+          data-reveal
+          [attr.aria-labelledby]="'release-' + release.id"
+        >
+          <div>
+            <p class="music__eyebrow">NUOVO SINGOLO</p>
+            <h4 [id]="'release-' + release.id">{{ release.title }}</h4>
+            <p class="release-artist">
+              {{ release.artist }} · {{ release.type }} · {{ release.year }}
+            </p>
+            @if (release.spotifyUrl; as spotifyUrl) {
+              <a
+                class="music-platform latest-release__link"
+                [href]="spotifyUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="
+                  'Ascolta ' + release.title + ' di ' + release.artist + ' su Spotify'
+                "
+              >
+                <img
+                  src="icons/music/spotify.svg"
+                  alt=""
+                  width="24"
+                  height="24"
+                  aria-hidden="true"
+                />
+                Ascolta su Spotify <span aria-hidden="true">↗</span>
+              </a>
+            }
+          </div>
+          @if (trustedSpotifyEmbedUrls[release.id]; as embedUrl) {
+            <div class="spotify-embed">
+              <iframe
+                [src]="embedUrl"
+                width="100%"
+                height="352"
+                frameborder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+                [title]="'Ascolta ' + release.title + ' di ' + release.artist + ' su Spotify'"
+              ></iframe>
+            </div>
+          }
+        </article>
+      }
+
       <div class="music-releases__layout">
         @for (release of featuredReleases; track release.id) {
           <article class="featured-release" data-reveal tabindex="0">
@@ -111,10 +161,10 @@
               }
             </div>
 
-            @if (release.spotifyEmbedUrl) {
+            @if (trustedSpotifyEmbedUrls[release.id]; as embedUrl) {
               <div class="spotify-embed">
                 <iframe
-                  [src]="trustedSpotifyEmbedUrls[release.id]"
+                  [src]="embedUrl"
                   width="100%"
                   height="352"
                   frameborder="0"

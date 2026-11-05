@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <title>Damiano Dell'Amore — Full Stack Developer & Digital Creator</title>
@@ -10,6 +10,20 @@
       content="Portfolio di Damiano Dell'Amore: frontend systems, prodotti full stack ed esperienze digitali."
     />
     <meta name="theme-color" content="#05070d" />
+    <script>
+      (() => {
+        let theme;
+        try {
+          theme = localStorage.getItem('damiano-universe-theme');
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === 'light' ? '#f5f3ee' : '#05070d';
+      })();
+    </script>
     <link rel="icon" type="image/x-icon" href="logos/damianodellamore_logo.svg" />
   </head>
   <body>

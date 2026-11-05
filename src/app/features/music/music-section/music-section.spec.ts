@@ -20,15 +20,20 @@ describe('MusicSection', () => {
     expect(component).toBeTruthy();
   });
 
-  it('renders five verified releases in three editorial blocks', () => {
+  it('renders the new single alongside the five confirmed releases', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
-    const releaseCards = element.querySelectorAll('.featured-release, .compact-release');
-    const editorialBlocks = element.querySelectorAll('.featured-release, .release-group');
+    const releaseCards = element.querySelectorAll(
+      '.latest-release, .featured-release, .compact-release',
+    );
+    const editorialBlocks = element.querySelectorAll(
+      '.latest-release, .featured-release, .release-group',
+    );
 
-    expect(releaseCards).toHaveLength(5);
-    expect(editorialBlocks).toHaveLength(3);
+    expect(releaseCards).toHaveLength(6);
+    expect(editorialBlocks).toHaveLength(4);
+    expect(element.querySelector('.latest-release h4')?.textContent).toBe('Mi Ipnotizzi');
     expect(element.textContent).toContain('In tlà mì Rumagna');
     expect(element.textContent).toContain('diventata virale durante il Covid nel 2020');
     expect(element.textContent).not.toContain('Le Mie Origini');
@@ -54,13 +59,23 @@ describe('MusicSection', () => {
     expect(cover?.getAttribute('loading')).toBe('lazy');
   });
 
-  it('does not reuse the previous Spotify embed without a verified track URL', () => {
+  it('embeds only the new single using the supplied Spotify album URL', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
     const embeds = element.querySelectorAll<HTMLIFrameElement>('.spotify-embed iframe');
 
-    expect(embeds).toHaveLength(0);
+    expect(embeds).toHaveLength(1);
+    expect(embeds[0].getAttribute('src')).toBe(
+      'https://open.spotify.com/embed/album/1uZhPKu1Iv7gxqjGth49Bs',
+    );
+    expect(embeds[0].title).toBe('Ascolta Mi Ipnotizzi di DaMMaD su Spotify');
+    expect(embeds[0].getAttribute('loading')).toBe('lazy');
+    expect(embeds[0].getAttribute('height')).toBe('352');
+    expect(element.querySelector('.featured-release iframe')).toBeNull();
+    expect(element.querySelector<HTMLAnchorElement>('.latest-release__link')?.href).toBe(
+      'https://open.spotify.com/album/1uZhPKu1Iv7gxqjGth49Bs',
+    );
   });
 
   it('embeds the most watched official YouTube video and links the artist channel', () => {
@@ -85,8 +100,10 @@ describe('MusicSection', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement as HTMLElement;
-    const platformLinks = element.querySelectorAll<HTMLAnchorElement>('a.music-platform');
-    const pendingPlatforms = element.querySelectorAll('.music-platform--pending');
+    const platformLinks = element.querySelectorAll<HTMLAnchorElement>(
+      '.music-platforms a.music-platform',
+    );
+    const pendingPlatforms = element.querySelectorAll('.music-platforms .music-platform--pending');
     const spotifyLink = platformLinks.item(0);
     const appleMusicLink = platformLinks.item(1);
     const youtubeLink = platformLinks.item(2);

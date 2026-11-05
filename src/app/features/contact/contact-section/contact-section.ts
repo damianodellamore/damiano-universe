@@ -47,6 +47,14 @@ export class ContactSection implements AfterViewInit {
       category: 'Code',
     },
     {
+      id: 'linkedin',
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/damianodellamore/',
+      icon: 'icons/social/linkedin.svg',
+      username: 'damianodellamore',
+      category: 'Work',
+    },
+    {
       id: 'instagram',
       label: 'Instagram',
       url: 'https://www.instagram.com/damiano_dellamore/',

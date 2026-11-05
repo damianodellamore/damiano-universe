@@ -15,7 +15,7 @@
   left: 50%;
   width: min(32rem, 70vw);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(113, 153, 181, 0.48), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--slate) / 0.48), transparent);
   content: '';
   transform: translateX(-50%);
 }
@@ -28,7 +28,7 @@
   width: 42rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 163, 93, 0.07), transparent 68%);
+  background: radial-gradient(circle, rgb(var(--gold-soft) / 0.07), transparent 68%);
   content: '';
   pointer-events: none;
 }
@@ -50,9 +50,13 @@
   min-width: 0;
 }
 
+.contact__statement {
+  container-type: inline-size;
+}
+
 .contact__eyebrow,
 .contact-presence__title {
-  color: #e0b96d;
+  color: rgb(var(--gold));
   font-size: 0.72rem;
   font-weight: 750;
   letter-spacing: 0.2em;
@@ -64,20 +68,20 @@
 }
 
 .contact__title {
-  max-width: 9ch;
   margin: 0;
-  color: #fff9ef;
-  font-size: clamp(4rem, 8.6vw, 8.4rem);
+  color: rgb(var(--heading));
+  font-size: clamp(2.5rem, 18cqi, 8.4rem);
   font-weight: 760;
   letter-spacing: -0.058em;
   line-height: 0.88;
-  overflow-wrap: break-word;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .contact__title span {
   display: block;
-  color: #dce8ef;
+  color: rgb(var(--cool));
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .contact__copy {
@@ -87,7 +91,7 @@
 
 .contact__copy p {
   margin: 0;
-  color: rgba(247, 241, 232, 0.7);
+  color: var(--text-body);
   font-size: clamp(1rem, 1.4vw, 1.14rem);
   line-height: 1.75;
   text-wrap: pretty;
@@ -110,7 +114,7 @@
   left: 46%;
   width: 92%;
   aspect-ratio: 2.2;
-  border: 1px solid rgba(113, 153, 181, 0.24);
+  border: 1px solid rgb(var(--slate) / 0.24);
   border-right-color: transparent;
   border-radius: 50%;
   transform: translate(-50%, -50%) rotate(-8deg);
@@ -123,7 +127,7 @@
   left: 6%;
   width: 86%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(220, 232, 239, 0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--cool) / 0.18), transparent);
   transform: rotate(-8deg);
 }
 
@@ -134,10 +138,10 @@
   width: 0.42rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #e0b96d;
+  background: rgb(var(--gold));
   box-shadow:
-    0 0 0 0.38rem rgba(224, 185, 109, 0.07),
-    0 0 1.6rem rgba(224, 185, 109, 0.48);
+    0 0 0 0.38rem rgb(var(--gold) / 0.07),
+    0 0 1.6rem rgb(var(--gold) / 0.48);
   animation: contact-star 5s ease-in-out infinite alternate;
 }
 
@@ -145,7 +149,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  color: rgba(220, 232, 239, 0.36);
+  color: var(--cool-faint);
   font-size: 0.56rem;
   font-weight: 680;
   letter-spacing: 0.16em;
@@ -158,9 +162,9 @@
   min-height: clamp(7rem, 13vw, 10rem);
   padding: 1.5rem clamp(0rem, 2vw, 1.25rem);
   margin-top: clamp(5rem, 10vw, 9rem);
-  border-top: 1px solid rgba(247, 241, 232, 0.18);
-  border-bottom: 1px solid rgba(247, 241, 232, 0.18);
-  color: #fff9ef;
+  border-top: 1px solid rgb(var(--text) / 0.18);
+  border-bottom: 1px solid rgb(var(--text) / 0.18);
+  color: rgb(var(--heading));
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 760;
   letter-spacing: -0.045em;
@@ -173,14 +177,14 @@
 }
 
 .contact__cta:is(:hover, :focus-visible) {
-  border-color: rgba(224, 185, 109, 0.5);
-  color: #ffffff;
-  text-shadow: 0 0 2.5rem rgba(224, 185, 109, 0.18);
+  border-color: rgb(var(--gold) / 0.5);
+  color: rgb(var(--heading));
+  text-shadow: 0 0 2.5rem rgb(var(--gold) / 0.18);
 }
 
 .contact__cta:focus-visible,
 .contact-link:focus-visible {
-  outline: 2px solid rgba(255, 249, 239, 0.9);
+  outline: 2px solid rgb(var(--heading) / 0.9);
   outline-offset: 0.35rem;
 }
 
@@ -234,17 +238,18 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 0;
   margin: 0;
+  border-bottom: 1px solid rgb(var(--text) / 0.12);
   column-gap: clamp(2rem, 6vw, 6rem);
   list-style: none;
 }
 
 .contact-links li {
   min-width: 0;
-  border-top: 1px solid rgba(247, 241, 232, 0.12);
+  border-top: 1px solid rgb(var(--text) / 0.12);
 }
 
-.contact-links li:nth-last-child(-n + 2) {
-  border-bottom: 1px solid rgba(247, 241, 232, 0.12);
+.contact-links li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .contact-link {
@@ -255,7 +260,7 @@
   min-height: 5.25rem;
   padding: 0.85rem 0;
   gap: 1rem;
-  color: rgba(247, 241, 232, 0.78);
+  color: var(--text-strong);
   text-decoration: none;
   transition:
     color 280ms ease,
@@ -269,7 +274,7 @@
   bottom: 0;
   left: 0;
   height: 1px;
-  background: linear-gradient(90deg, rgba(224, 185, 109, 0.42), transparent);
+  background: linear-gradient(90deg, rgb(var(--gold) / 0.42), transparent);
   content: '';
   opacity: 0;
   transform: scaleX(0.35);
@@ -280,8 +285,8 @@
 }
 
 .contact-link:is(:hover, :focus-visible) {
-  color: #ffffff;
-  filter: drop-shadow(0 0 1rem rgba(113, 153, 181, 0.18));
+  color: rgb(var(--heading));
+  filter: drop-shadow(0 0 1rem rgb(var(--slate) / 0.18));
   transform: translate3d(0, -0.16rem, 0);
 }
 
@@ -335,7 +340,7 @@
 .contact-link__identity span {
   margin-top: 0.24rem;
   overflow: hidden;
-  color: rgba(220, 232, 239, 0.45);
+  color: var(--cool-faint);
   font-size: 0.7rem;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -343,12 +348,12 @@
 }
 
 .contact-link:is(:hover, :focus-visible) .contact-link__identity span {
-  color: rgba(220, 232, 239, 0.76);
+  color: var(--cool-muted);
 }
 
 .contact-link__category {
   padding-right: 1.4rem;
-  color: rgba(224, 185, 109, 0.48);
+  color: var(--accent-text);
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -393,11 +398,6 @@
     gap: 3.5rem;
   }
 
-  .contact__title {
-    max-width: 10ch;
-    font-size: clamp(3.8rem, 12vw, 6.5rem);
-  }
-
   .contact__context {
     display: grid;
     grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
@@ -413,10 +413,6 @@
 @media (max-width: 640px) {
   .contact {
     padding-block: 7rem 6rem;
-  }
-
-  .contact__title {
-    font-size: clamp(3.2rem, 16vw, 4.8rem);
   }
 
   .contact__context,
@@ -437,14 +433,6 @@
 
   .contact__arrow {
     width: 2.5rem;
-  }
-
-  .contact-links li:nth-last-child(2) {
-    border-bottom: 0;
-  }
-
-  .contact-links li:last-child {
-    border-bottom: 1px solid rgba(247, 241, 232, 0.12);
   }
 }
 

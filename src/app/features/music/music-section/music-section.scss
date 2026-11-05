@@ -15,7 +15,7 @@
   left: 50%;
   width: min(32rem, 70vw);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(224, 185, 109, 0.58), transparent);
+  background: linear-gradient(90deg, transparent, rgb(var(--gold) / 0.58), transparent);
   content: '';
   transform: translateX(-50%);
 }
@@ -41,7 +41,7 @@
 
 .music__eyebrow {
   margin: 0 0 1rem;
-  color: #e0b96d;
+  color: rgb(var(--gold));
   font-size: 0.78rem;
   font-weight: 750;
   letter-spacing: 0.2em;
@@ -50,7 +50,7 @@
 
 .music__title {
   margin: 0;
-  color: #fff9ef;
+  color: rgb(var(--heading));
   font-size: clamp(2.8rem, 5.7vw, 5.5rem);
   font-weight: 760;
   letter-spacing: -0.045em;
@@ -59,13 +59,13 @@
 
 .music__title span {
   display: block;
-  color: #dce8ef;
+  color: rgb(var(--cool));
 }
 
 .music__description {
   max-width: 38rem;
   margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
-  color: rgba(247, 241, 232, 0.72);
+  color: var(--text-body);
   font-size: clamp(1.02rem, 1.5vw, 1.18rem);
   line-height: 1.72;
 }
@@ -83,10 +83,10 @@
   align-items: center;
   min-height: 3.25rem;
   padding: 0.75rem 0.9rem;
-  border: 1px solid rgba(247, 241, 232, 0.12);
+  border: 1px solid rgb(var(--text) / 0.12);
   border-radius: 999px;
   gap: 0.65rem;
-  color: rgba(247, 241, 232, 0.84);
+  color: var(--text-strong);
   background: rgba(255, 255, 255, 0.035);
   font-size: 0.78rem;
   font-weight: 720;
@@ -106,7 +106,7 @@
 }
 
 a.music-platform:is(:hover, :focus-visible) {
-  border-color: rgba(247, 241, 232, 0.28);
+  border-color: rgb(var(--text) / 0.28);
   box-shadow: 0 0 1.8rem var(--platform-glow);
   transform: translate3d(0, -0.2rem, 0);
 }
@@ -116,11 +116,8 @@ a.music-platform:is(:hover, :focus-visible) img {
   transform: scale(1.06);
 }
 
-.music-platform:focus-visible,
-.featured-release:focus-visible,
-.compact-release:focus-visible,
-.release-link:focus-visible {
-  outline: 2px solid rgba(255, 249, 239, 0.9);
+:is(.music-platform, .featured-release, .compact-release, .release-link):focus-visible {
+  outline: 2px solid rgb(var(--heading) / 0.9);
   outline-offset: 0.25rem;
 }
 
@@ -134,13 +131,13 @@ a.music-platform:is(:hover, :focus-visible) img {
   place-items: center;
   min-height: clamp(27rem, 44vw, 36rem);
   overflow: hidden;
-  border: 1px solid rgba(219, 233, 242, 0.14);
+  border: 1px solid rgb(var(--cool) / 0.14);
   border-radius: clamp(1.8rem, 4vw, 2.8rem);
   background:
-    radial-gradient(circle at 50% 42%, rgba(224, 185, 109, 0.11), transparent 26%),
-    radial-gradient(circle at 66% 68%, rgba(71, 126, 170, 0.15), transparent 36%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(4, 6, 11, 0.72));
-  box-shadow: 0 2.5rem 7rem rgba(0, 0, 0, 0.28);
+    radial-gradient(circle at 50% 42%, rgb(var(--gold) / 0.11), transparent 26%),
+    radial-gradient(circle at 66% 68%, rgb(var(--blue) / 0.15), transparent 36%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgb(var(--panel) / 0.72));
+  box-shadow: 0 2.5rem 7rem rgb(var(--shadow) / 0.28);
   isolation: isolate;
 }
 
@@ -152,7 +149,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 }
 
 .music-visual__orbit {
-  border: 1px solid rgba(109, 184, 224, 0.2);
+  border: 1px solid rgb(var(--ice) / 0.2);
   border-radius: 50%;
   animation: music-orbit 34s linear infinite;
 }
@@ -166,7 +163,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 .music-visual__orbit--inner {
   width: 52%;
   aspect-ratio: 1.2;
-  border-color: rgba(224, 185, 109, 0.24);
+  border-color: rgb(var(--gold) / 0.24);
   animation-direction: reverse;
   animation-duration: 26s;
   transform: rotate(24deg);
@@ -175,13 +172,13 @@ a.music-platform:is(:hover, :focus-visible) img {
 .music-visual__core {
   width: clamp(7rem, 16vw, 10rem);
   aspect-ratio: 1;
-  border: 1px solid rgba(255, 249, 239, 0.24);
+  border: 1px solid rgb(var(--heading) / 0.24);
   border-radius: 50%;
   color: #fff9ef;
   background: radial-gradient(circle at 36% 30%, #dce8ef, #477eaa 28%, #111725 68%);
   box-shadow:
-    0 0 3.5rem rgba(71, 126, 170, 0.24),
-    inset 0 0 2rem rgba(224, 185, 109, 0.12);
+    0 0 3.5rem rgb(var(--blue) / 0.24),
+    inset 0 0 2rem rgb(var(--gold) / 0.12);
   font-size: clamp(1rem, 2vw, 1.35rem);
   font-weight: 760;
   letter-spacing: 0.08em;
@@ -204,7 +201,7 @@ a.music-platform:is(:hover, :focus-visible) img {
   width: clamp(0.16rem, 0.35vw, 0.28rem);
   height: var(--wave-height);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(224, 185, 109, 0.84), rgba(109, 184, 224, 0.38));
+  background: linear-gradient(180deg, rgb(var(--gold) / 0.84), rgb(var(--ice) / 0.38));
   opacity: 0.72;
   transform: scaleY(0.62);
   transform-origin: center;
@@ -221,7 +218,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 
 .music-releases__intro h3 {
   margin: 0;
-  color: #fff9ef;
+  color: rgb(var(--heading));
   font-size: clamp(2.4rem, 5vw, 4.8rem);
   letter-spacing: -0.04em;
   line-height: 1;
@@ -236,11 +233,11 @@ a.music-platform:is(:hover, :focus-visible) img {
 
 .featured-release,
 .release-group {
-  border: 1px solid rgba(247, 241, 232, 0.12);
+  border: 1px solid rgb(var(--text) / 0.12);
   border-radius: 1.75rem;
   background:
-    radial-gradient(circle at 92% 8%, rgba(71, 126, 170, 0.14), transparent 45%),
-    rgba(8, 11, 18, 0.74);
+    radial-gradient(circle at 92% 8%, rgb(var(--blue) / 0.14), transparent 45%),
+    rgb(var(--surface) / 0.74);
   transition:
     border-color 380ms ease,
     box-shadow 380ms ease,
@@ -274,24 +271,23 @@ a.music-platform:is(:hover, :focus-visible) img {
 
 .featured-release:is(:hover, :focus-visible),
 .release-group:is(:hover, :focus-within) {
-  border-color: rgba(224, 185, 109, 0.34);
-  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.25);
+  border-color: rgb(var(--gold) / 0.34);
+  box-shadow: 0 2rem 5rem rgb(var(--shadow) / 0.25);
   transform: translate3d(0, -0.3rem, 0);
 }
 
 .release-meta {
   margin: 0 0 1rem;
-  color: #e0b96d;
+  color: rgb(var(--gold));
   font-size: 0.66rem;
   font-weight: 750;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-.featured-release h4,
-.compact-release h4 {
+:is(.featured-release, .compact-release) h4 {
   margin: 0;
-  color: #fff9ef;
+  color: rgb(var(--heading));
   letter-spacing: -0.035em;
   line-height: 1.02;
 }
@@ -303,7 +299,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 
 .release-artist {
   margin: 0.9rem 0 0;
-  color: rgba(220, 232, 239, 0.82);
+  color: var(--cool-strong);
   font-size: 0.88rem;
   font-weight: 720;
 }
@@ -312,14 +308,14 @@ a.music-platform:is(:hover, :focus-visible) img {
 .release-album {
   max-width: 38rem;
   margin: 1rem 0 0;
-  color: rgba(247, 241, 232, 0.58);
+  color: var(--text-muted);
   line-height: 1.55;
 }
 
 .release-link {
   display: inline-flex;
   margin-top: 1.5rem;
-  color: rgba(247, 241, 232, 0.82);
+  color: var(--text-strong);
   font-size: 0.76rem;
   font-weight: 720;
   text-underline-offset: 0.3rem;
@@ -327,21 +323,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 }
 
 .release-link:is(:hover, :focus-visible) {
-  color: #ffffff;
-}
-
-.spotify-embed {
-  grid-column: 1 / -1;
-  margin-top: clamp(2rem, 4vw, 3.5rem);
-  overflow: hidden;
-  border-radius: 0.85rem;
-}
-
-.spotify-embed iframe {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  border: 0;
+  color: rgb(var(--heading));
 }
 
 .release-group {
@@ -356,7 +338,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 }
 
 .compact-release:not(:last-child) {
-  border-bottom: 1px solid rgba(247, 241, 232, 0.09);
+  border-bottom: 1px solid rgb(var(--text) / 0.09);
 }
 
 .compact-release h4 {
@@ -368,7 +350,7 @@ a.music-platform:is(:hover, :focus-visible) img {
 }
 
 .compact-release:is(:hover, :focus-visible) h4 {
-  color: #ffffff;
+  color: rgb(var(--heading));
   transform: translate3d(0.12rem, 0, 0);
 }
 
@@ -394,8 +376,8 @@ a.music-platform:is(:hover, :focus-visible) img {
 @keyframes music-core {
   to {
     box-shadow:
-      0 0 4.5rem rgba(71, 126, 170, 0.32),
-      inset 0 0 2.5rem rgba(224, 185, 109, 0.16);
+      0 0 4.5rem rgb(var(--blue) / 0.32),
+      inset 0 0 2.5rem rgb(var(--gold) / 0.16);
     transform: scale(1.025);
   }
 }

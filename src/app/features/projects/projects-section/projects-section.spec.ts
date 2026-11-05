@@ -27,7 +27,7 @@ describe('ProjectsSection', () => {
     const projects = element.querySelectorAll('.project-entry');
 
     expect(projects).toHaveLength(1);
-    expect(element.textContent).toContain('DAMIANO UNIVERSE');
+    expect(element.querySelector('h3')?.textContent).toBe("Damiano Dell'Amore Universe");
     expect(element.textContent).toContain('Angular / Creative Frontend');
     expect(element.textContent).toContain('2026 · In development');
     expect(element.textContent).not.toContain('Pexels Explorer');

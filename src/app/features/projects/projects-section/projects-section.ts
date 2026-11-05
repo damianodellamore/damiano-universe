@@ -45,7 +45,7 @@ export class ProjectsSection implements AfterViewInit {
   protected readonly projects: Project[] = [
     {
       id: 'damiano-universe',
-      title: 'DAMIANO UNIVERSE',
+      title: "Damiano Dell'Amore Universe",
       category: 'Angular / Creative Frontend',
       description:
         'Un portfolio interattivo costruito con Angular per raccontare competenze, prodotti e percorso professionale attraverso un universo digitale.',
