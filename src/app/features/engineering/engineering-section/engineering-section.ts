@@ -125,7 +125,7 @@ export class EngineeringSection implements AfterViewInit {
       claim: 'La tua prossima fermata, a Lucca.',
       description: [
         'RebusLucca è la mia seconda app: aiuta a trovare fermate, orari e percorsi degli autobus di Lucca e provincia, su iPhone e iPad.',
-        'La presento su mynameme.com con MyNameMe, il mio secondo alias. Il progetto nasce da un’idea mia e di Pierluigi Dell’Amore, per rendere più semplice prendere l’autobus.',
+        'La presento su mynameme.com con MyNameMe, il mio secondo alias. Il progetto nasce da un’idea mia, Damiano Dell’Amore, per rendere più semplice prendere l’autobus.',
         'Scegli partenza e arrivo sulla mappa, cerca collegamenti diretti o con un cambio e attiva gli avvisi vocali prima di scendere. Senza account e senza pubblicità.',
       ],
       stack: ['iPhone & iPad', 'Mappa delle fermate', 'Orari offline', 'Avvisi vocali'],
