@@ -36,7 +36,7 @@ describe('ContactSection', () => {
     const element = fixture.nativeElement as HTMLElement;
     const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('.contact-link'));
 
-    expect(links).toHaveLength(7);
+    expect(links).toHaveLength(8);
     expect(element.querySelector<HTMLAnchorElement>('[data-link="linkedin"]')?.href).toBe(
       'https://www.linkedin.com/in/damianodellamore/',
     );

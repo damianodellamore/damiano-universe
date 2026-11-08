@@ -94,6 +94,14 @@ export class ContactSection implements AfterViewInit {
       username: 'treasureloop.it',
       category: 'Product',
     },
+    {
+      id: 'mynameme',
+      label: 'MyNameMe',
+      url: 'https://www.mynameme.com/',
+      icon: 'logos/rebuslucca_app_icon.png',
+      username: 'www.mynameme.com',
+      category: 'Product',
+    },
   ];
 
   ngAfterViewInit(): void {
