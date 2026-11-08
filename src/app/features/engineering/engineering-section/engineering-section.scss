@@ -192,6 +192,7 @@
   font-size: clamp(3.2rem, 6vw, 6rem);
   letter-spacing: -0.055em;
   line-height: 0.95;
+  overflow-wrap: anywhere;
 }
 
 .featured-product__claim {
@@ -297,6 +298,7 @@
   color: var(--text-faint);
   font-size: 0.55rem;
   letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .product-visual__canvas {

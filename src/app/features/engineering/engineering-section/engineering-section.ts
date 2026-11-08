@@ -18,17 +18,25 @@ interface EngineeringCard {
 }
 
 interface FeaturedProduct {
+  id: string;
+  eyebrow: string;
   name: string;
   claim: string;
   description: string[];
   stack: string[];
+  stackLabel: string;
   url: string;
-  appStoreUrl: string;
+  appStoreUrl?: string;
+  launch?: {
+    date: string;
+    label: string;
+  };
   visual: ProductVisual;
 }
 
 interface ProductVisual {
   logo: string;
+  monogram: string;
   label: string;
   statement: string;
   pillars: string[];
@@ -49,7 +57,7 @@ export class EngineeringSection implements AfterViewInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly ngZone = inject(NgZone);
 
-  protected productLogoLoaded = false;
+  protected readonly loadedProductLogos = new Set<string>();
 
   protected readonly cards: EngineeringCard[] = [
     {
@@ -79,35 +87,66 @@ export class EngineeringSection implements AfterViewInit {
     },
   ];
 
-  protected readonly featuredProduct: FeaturedProduct = {
-    name: 'TreasureLoop',
-    claim: 'La cultura torna nei luoghi reali.',
-    description: [
-      "TreasureLoop collega luoghi reali e contenuti digitali in un'unica esperienza culturale.",
-      'Geolocalizzazione, storie e media trasformano il patrimonio in qualcosa da scoprire e vivere sul territorio.',
-    ],
-    stack: [
-      'React Native',
-      'Expo',
-      'Node.js',
-      'REST API',
-      'Database',
-      'Geolocalizzazione',
-      'Media',
-      'App Store',
-    ],
-    url: 'https://www.treasureloop.it',
-    appStoreUrl: 'https://apps.apple.com/it/app/treasureloop/id6736532288',
-    visual: {
-      logo: 'logos/treasureloop_logo.png',
-      label: 'CULTURAL PLATFORM',
-      statement: 'Luoghi reali, storie digitali e cultura da vivere sul territorio.',
-      pillars: ['Luoghi reali', 'Geolocalizzazione', 'Arte & storia', 'Media', 'Esplorazione'],
+  protected readonly featuredProducts: FeaturedProduct[] = [
+    {
+      id: 'treasureloop',
+      eyebrow: 'FEATURED PRODUCT',
+      name: 'TreasureLoop',
+      claim: 'La cultura torna nei luoghi reali.',
+      description: [
+        "TreasureLoop collega luoghi reali e contenuti digitali in un'unica esperienza culturale.",
+        'Geolocalizzazione, storie e media trasformano il patrimonio in qualcosa da scoprire e vivere sul territorio.',
+      ],
+      stack: [
+        'React Native',
+        'Expo',
+        'Node.js',
+        'REST API',
+        'Database',
+        'Geolocalizzazione',
+        'Media',
+        'App Store',
+      ],
+      stackLabel: 'Stack di TreasureLoop',
+      url: 'https://www.treasureloop.it',
+      appStoreUrl: 'https://apps.apple.com/it/app/treasureloop/id6736532288',
+      visual: {
+        logo: 'logos/treasureloop_logo.png',
+        monogram: 'TL',
+        label: 'CULTURAL PLATFORM',
+        statement: 'Luoghi reali, storie digitali e cultura da vivere sul territorio.',
+        pillars: ['Luoghi reali', 'Geolocalizzazione', 'Arte & storia', 'Media', 'Esplorazione'],
+      },
     },
-  };
+    {
+      id: 'rebuslucca',
+      eyebrow: 'SECONDA APP · MYNAMEME',
+      name: 'RebusLucca',
+      claim: 'La tua prossima fermata, a Lucca.',
+      description: [
+        'RebusLucca è la mia seconda app: aiuta a trovare fermate, orari e percorsi degli autobus di Lucca e provincia, su iPhone e iPad.',
+        'La presento su mynameme.com con MyNameMe, il mio secondo alias. Il progetto nasce da un’idea mia e di Pierluigi Dell’Amore, per rendere più semplice prendere l’autobus.',
+        'Scegli partenza e arrivo sulla mappa, cerca collegamenti diretti o con un cambio e attiva gli avvisi vocali prima di scendere. Senza account e senza pubblicità.',
+      ],
+      stack: ['iPhone & iPad', 'Mappa delle fermate', 'Orari offline', 'Avvisi vocali'],
+      stackLabel: 'Dispositivi e funzionalità di RebusLucca',
+      url: 'https://www.mynameme.com/',
+      launch: {
+        date: '2026-11-11',
+        label: '11 novembre 2026',
+      },
+      visual: {
+        logo: 'logos/rebuslucca_app_icon.png',
+        monogram: 'RL',
+        label: 'MYNAMEME.COM / MOBILITÀ LOCALE',
+        statement: 'Due fermate, il tuo percorso. Un modo più semplice di muoversi a Lucca.',
+        pillars: ['Lucca e provincia', 'Percorsi', 'Coincidenze', 'Voce'],
+      },
+    },
+  ];
 
-  protected handleProductLogoLoad(): void {
-    this.productLogoLoaded = true;
+  protected handleProductLogoLoad(productId: string): void {
+    this.loadedProductLogos.add(productId);
   }
 
   protected handleProductLogoError(event: Event): void {
