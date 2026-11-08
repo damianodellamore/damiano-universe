@@ -36,7 +36,6 @@ interface FeaturedProduct {
 
 interface ProductVisual {
   logo: string;
-  monogram: string;
   label: string;
   statement: string;
   pillars: string[];
@@ -56,8 +55,6 @@ export class EngineeringSection implements AfterViewInit {
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly ngZone = inject(NgZone);
-
-  protected readonly loadedProductLogos = new Set<string>();
 
   protected readonly cards: EngineeringCard[] = [
     {
@@ -112,7 +109,6 @@ export class EngineeringSection implements AfterViewInit {
       appStoreUrl: 'https://apps.apple.com/it/app/treasureloop/id6736532288',
       visual: {
         logo: 'logos/treasureloop_logo.png',
-        monogram: 'TL',
         label: 'CULTURAL PLATFORM',
         statement: 'Luoghi reali, storie digitali e cultura da vivere sul territorio.',
         pillars: ['Luoghi reali', 'Geolocalizzazione', 'Arte & storia', 'Media', 'Esplorazione'],
@@ -137,25 +133,12 @@ export class EngineeringSection implements AfterViewInit {
       },
       visual: {
         logo: 'logos/rebuslucca_app_icon.png',
-        monogram: 'RL',
         label: 'MYNAMEME.COM / MOBILITÀ LOCALE',
         statement: 'Due fermate, il tuo percorso. Un modo più semplice di muoversi a Lucca.',
         pillars: ['Lucca e provincia', 'Percorsi', 'Coincidenze', 'Voce'],
       },
     },
   ];
-
-  protected handleProductLogoLoad(productId: string): void {
-    this.loadedProductLogos.add(productId);
-  }
-
-  protected handleProductLogoError(event: Event): void {
-    const image = event.target;
-
-    if (image instanceof HTMLImageElement) {
-      image.hidden = true;
-    }
-  }
 
   ngAfterViewInit(): void {
     const section = this.engineeringSection.nativeElement;

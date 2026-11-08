@@ -186,13 +186,17 @@
   min-width: 0;
 }
 
+.featured-product__content {
+  container-type: inline-size;
+}
+
 .featured-product h3 {
   margin: 0;
   color: rgb(var(--heading));
-  font-size: clamp(3.2rem, 6vw, 6rem);
+  font-size: clamp(1.6rem, 15cqi, 6rem);
   letter-spacing: -0.055em;
   line-height: 0.95;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 .featured-product__claim {
@@ -329,18 +333,9 @@
   aspect-ratio: 1;
   margin: 0.65rem 0;
   padding: 0.65rem;
-  border-radius: 50%;
+  border-radius: 22%;
   background: radial-gradient(circle, rgb(var(--gold) / 0.1), transparent 68%);
   filter: drop-shadow(0 0 1.75rem rgb(var(--gold) / 0.18));
-}
-
-.product-visual__brand span {
-  position: absolute;
-  color: rgb(var(--gold));
-  font-size: 2rem;
-  font-weight: 760;
-  opacity: 1;
-  transition: opacity 360ms ease;
 }
 
 .product-visual__brand img {
@@ -348,17 +343,9 @@
   z-index: 1;
   width: 100%;
   height: 100%;
+  border-radius: 22%;
+  background: #0a1019;
   object-fit: contain;
-  opacity: 0;
-  transition: opacity 420ms ease;
-}
-
-.product-visual__brand--has-logo span {
-  opacity: 0;
-}
-
-.product-visual__brand--has-logo img {
-  opacity: 1;
 }
 
 .product-visual__canvas p {
@@ -459,9 +446,7 @@
 
   .engineering-card,
   .engineering-card::before,
-  .product-action,
-  .product-visual__brand span,
-  .product-visual__brand img {
+  .product-action {
     transition: none;
   }
 

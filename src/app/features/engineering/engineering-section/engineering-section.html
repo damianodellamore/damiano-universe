@@ -110,19 +110,13 @@
           <div class="product-visual__canvas">
             <span class="product-visual__label">{{ product.visual.label }}</span>
 
-            <div
-              class="product-visual__brand"
-              [class.product-visual__brand--has-logo]="loadedProductLogos.has(product.id)"
-            >
-              <span aria-hidden="true">{{ product.visual.monogram }}</span>
+            <div class="product-visual__brand">
               <img
                 [src]="product.visual.logo"
                 [alt]="'Logo ' + product.name"
                 width="320"
                 height="320"
                 loading="lazy"
-                (load)="handleProductLogoLoad(product.id)"
-                (error)="handleProductLogoError($event)"
               />
             </div>
 
