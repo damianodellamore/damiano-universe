@@ -23,22 +23,28 @@ interface FeaturedProduct {
   name: string;
   claim: string;
   description: string[];
-  stack: string[];
-  stackLabel: string;
-  url: string;
-  appStoreUrl?: string;
-  launch?: {
-    date: string;
+  stack?: {
     label: string;
+    items: string[];
   };
+  url: string;
+  actionLabel?: string;
+  appStoreUrl?: string;
   visual: ProductVisual;
 }
 
-interface ProductVisual {
+type ProductVisual = {
   logo: string;
   label: string;
-  statement: string;
-  pillars: string[];
+} & (
+  | { kind: 'overview'; statement: string; pillars: string[] }
+  | { kind: 'catalog'; apps: CatalogApp[] }
+);
+
+interface CatalogApp {
+  id: string;
+  name: string;
+  appStoreUrl?: string;
 }
 
 @Component({
@@ -94,20 +100,23 @@ export class EngineeringSection implements AfterViewInit {
         "TreasureLoop collega luoghi reali e contenuti digitali in un'unica esperienza culturale.",
         'Geolocalizzazione, storie e media trasformano il patrimonio in qualcosa da scoprire e vivere sul territorio.',
       ],
-      stack: [
-        'React Native',
-        'Expo',
-        'Node.js',
-        'REST API',
-        'Database',
-        'Geolocalizzazione',
-        'Media',
-        'App Store',
-      ],
-      stackLabel: 'Stack di TreasureLoop',
+      stack: {
+        label: 'Stack di TreasureLoop',
+        items: [
+          'React Native',
+          'Expo',
+          'Node.js',
+          'REST API',
+          'Database',
+          'Geolocalizzazione',
+          'Media',
+          'App Store',
+        ],
+      },
       url: 'https://www.treasureloop.it',
       appStoreUrl: 'https://apps.apple.com/it/app/treasureloop/id6736532288',
       visual: {
+        kind: 'overview',
         logo: 'logos/treasureloop_logo.png',
         label: 'CULTURAL PLATFORM',
         statement: 'Luoghi reali, storie digitali e cultura da vivere sul territorio.',
@@ -115,27 +124,27 @@ export class EngineeringSection implements AfterViewInit {
       },
     },
     {
-      id: 'rebuslucca',
-      eyebrow: 'SECONDA APP · MYNAMEME',
-      name: 'RebusLucca',
-      claim: 'La tua prossima fermata, a Lucca.',
+      id: 'rebus',
+      eyebrow: 'MYNAMEME.COM',
+      name: 'ReBus',
+      claim: 'Le app per il trasporto pubblico locale.',
       description: [
-        'RebusLucca è la mia seconda app: aiuta a trovare fermate, orari e percorsi degli autobus di Lucca e provincia, su iPhone e iPad.',
-        'La presento su mynameme.com con MyNameMe, il mio secondo alias. Il progetto nasce da un’idea mia, Damiano Dell’Amore, per rendere più semplice prendere l’autobus.',
-        'Scegli partenza e arrivo sulla mappa, cerca collegamenti diretti o con un cambio e attiva gli avvisi vocali prima di scendere. Senza account e senza pubblicità.',
+        'Ho creato ReBus per aiutarti a trovare fermate, orari e percorsi. Su mynameme.com puoi scegliere l’app per la tua città.',
       ],
-      stack: ['iPhone & iPad', 'Mappa delle fermate', 'Orari offline', 'Avvisi vocali'],
-      stackLabel: 'Dispositivi e funzionalità di RebusLucca',
       url: 'https://www.mynameme.com/',
-      launch: {
-        date: '2026-11-11',
-        label: '11 novembre 2026',
-      },
+      actionLabel: 'Scopri le app ReBus',
       visual: {
-        logo: 'logos/rebuslucca_app_icon.png',
-        label: 'MYNAMEME.COM / MOBILITÀ LOCALE',
-        statement: 'Due fermate, il tuo percorso. Un modo più semplice di muoversi a Lucca.',
-        pillars: ['Lucca e provincia', 'Percorsi', 'Coincidenze', 'Voce'],
+        kind: 'catalog',
+        logo: 'logos/rebus_catalog_icon.png',
+        label: 'Le app ReBus',
+        apps: [
+          {
+            id: 'rebuslucca',
+            name: 'ReBusLucca',
+            appStoreUrl: 'https://apps.apple.com/it/app/rebuslucca/id6832028376',
+          },
+          { id: 'rebusmilano', name: 'ReBusMilano' },
+        ],
       },
     },
   ];

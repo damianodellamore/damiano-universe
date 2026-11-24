@@ -60,19 +60,15 @@
             @for (paragraph of product.description; track paragraph) {
               <p>{{ paragraph }}</p>
             }
-            @if (product.launch; as launch) {
-              <p>
-                <strong>Lancio previsto</strong> ·
-                <time [attr.datetime]="launch.date">{{ launch.label }}</time>
-              </p>
-            }
           </div>
 
-          <ul class="featured-product__stack" [attr.aria-label]="product.stackLabel">
-            @for (technology of product.stack; track technology) {
-              <li>{{ technology }}</li>
-            }
-          </ul>
+          @if (product.stack; as stack) {
+            <ul class="featured-product__stack" [attr.aria-label]="stack.label">
+              @for (technology of stack.items; track technology) {
+                <li>{{ technology }}</li>
+              }
+            </ul>
+          }
 
           <div class="featured-product__actions">
             <a
@@ -81,8 +77,12 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              Scopri {{ product.name }}
-              <span aria-hidden="true">↗</span>
+              @if (product.actionLabel; as actionLabel) {
+                {{ actionLabel }}
+              } @else {
+                Scopri {{ product.name }}
+                <span aria-hidden="true">↗</span>
+              }
             </a>
             @if (product.appStoreUrl; as appStoreUrl) {
               <a
@@ -98,35 +98,59 @@
           </div>
         </div>
 
-        <div
-          class="product-visual"
-          [attr.aria-label]="'Identità e concetti chiave di ' + product.name"
-        >
+        <div class="product-visual">
           <div class="product-visual__bar" aria-hidden="true">
             <span></span><span></span><span></span>
-            <strong>{{ product.name }} / {{ product.visual.label }}</strong>
+            @if (product.visual.kind === 'overview') {
+              <strong>{{ product.name }} / {{ product.visual.label }}</strong>
+            } @else {
+              <strong>{{ product.visual.label }}</strong>
+            }
           </div>
 
           <div class="product-visual__canvas">
-            <span class="product-visual__label">{{ product.visual.label }}</span>
-
+            @if (product.visual.kind === 'overview') {
+              <span class="product-visual__label">{{ product.visual.label }}</span>
+            }
             <div class="product-visual__brand">
               <img
                 [src]="product.visual.logo"
-                [alt]="'Logo ' + product.name"
+                [alt]="product.visual.kind === 'overview' ? 'Logo ' + product.name : ''"
                 width="320"
                 height="320"
                 loading="lazy"
               />
             </div>
 
-            <p>{{ product.visual.statement }}</p>
+            @if (product.visual.kind === 'catalog') {
+              <ul class="product-catalog" [attr.aria-label]="product.visual.label">
+                @for (app of product.visual.apps; track app.id) {
+                  <li [id]="app.id">
+                    <strong>{{ app.name }}</strong>
+                    @if (app.appStoreUrl; as appStoreUrl) {
+                      <a
+                        [href]="appStoreUrl"
+                        [attr.aria-label]="'Scarica su App Store · ' + app.name"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Scarica su App Store
+                      </a>
+                    } @else {
+                      <span>In arrivo</span>
+                    }
+                  </li>
+                }
+              </ul>
+            } @else {
+              <p>{{ product.visual.statement }}</p>
 
-            <ul>
-              @for (pillar of product.visual.pillars; track pillar) {
-                <li>{{ pillar }}</li>
-              }
-            </ul>
+              <ul class="product-visual__pillars">
+                @for (pillar of product.visual.pillars; track pillar) {
+                  <li>{{ pillar }}</li>
+                }
+              </ul>
+            }
           </div>
         </div>
       </article>

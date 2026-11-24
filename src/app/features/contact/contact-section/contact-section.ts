@@ -95,11 +95,11 @@ export class ContactSection implements AfterViewInit {
       category: 'Product',
     },
     {
-      id: 'mynameme',
-      label: 'MyNameMe',
+      id: 'rebus',
+      label: 'ReBus',
       url: 'https://www.mynameme.com/',
-      icon: 'logos/rebuslucca_app_icon.png',
-      username: 'www.mynameme.com',
+      icon: 'logos/rebus_catalog_icon.png',
+      username: 'mynameme.com',
       category: 'Product',
     },
   ];
